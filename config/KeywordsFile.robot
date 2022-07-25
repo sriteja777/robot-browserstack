@@ -36,8 +36,10 @@ Click on Sign In
 
 Enter Credentials
     [Arguments]    ${username}  ${password}
-    input text    css=#username input   ${username} \n
-    input text    css=#password input   ${password} \n
+    input text    css=#username input   ${username}
+    click element    css= .css-1n7v3ny-option            
+    input text    css=#password input   ${password}
+    click element    css= .css-1n7v3ny-option
 
 Click on Login
     click element    id=login-btn
