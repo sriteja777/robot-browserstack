@@ -54,3 +54,4 @@ Verify site content
     run keyword if    "${site_content}" == "Up and running"    mark test status    passed    Site Content validated!
     run keyword if    "${site_content}" != "Up and running"    mark test status    failed    Site Content validation failed!
     element should contain    css=body    Up and running
+    

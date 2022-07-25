@@ -17,3 +17,4 @@ def startLocal():
 @keyword("STOP LOCAL")
 def stopLocal():
     bs_local.stop()
+    
