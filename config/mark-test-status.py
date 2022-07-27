@@ -7,4 +7,3 @@ from robot.api.deco import keyword
 def testStatus(status, reason):
      driver = BuiltIn().get_library_instance('SeleniumLibrary').driver
      driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"'+status+'", "reason": "'+reason+'"}}')
-     

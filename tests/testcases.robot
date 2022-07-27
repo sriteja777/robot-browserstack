@@ -23,4 +23,3 @@ Image not loading user
     Enter Credentials   image_not_loading_user    testingisfun99
     Click on Login
     Verify username     image_not_loading_user
-    
