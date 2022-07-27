@@ -22,7 +22,6 @@
 
 ## Running tests
 
-* To run single test, run `robot tests/SingleTest.robot`
 * To run local test, run `robot tests/LocalTest.robot`
 * To run parallel tests we will be using the [Pabot](https://pabot.org/) library: 
   1. To run test suites in parallel (Testcases within respective test suites will be sequential)
