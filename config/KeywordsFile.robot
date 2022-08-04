@@ -1,17 +1,14 @@
 *** Settings ***
 Library    SeleniumLibrary
 Library    mark-test-status.py
-Library    manage-local-testing.py
 
 *** Variables ***
-${USERNAME}=     %{BROWSERSTACK_USERNAME}
-${ACCESSKEY}=    %{BROWSERSTACK_ACCESS_KEY}
-${REMOTE_URL}=  https://${USERNAME}:${ACCESSKEY}@hub.browserstack.com/wd/hub
+${remote_url}=    https://hub.browserstack.com/wd/hub
 
 *** Keywords ***
 Open Session
-    [Arguments]    ${capabilities}  ${website_url}
-    open browser    remote_url=${REMOTE_URL}     desired_capabilities=${capabilities}   url=${website_url}
+    [Arguments]    ${capabilities}    ${test_url}
+    open browser    remote_url=${remote_url}     desired_capabilities=${capabilities}   url=${test_url}
 
 Close Session
     close browser
@@ -23,13 +20,8 @@ Mark Test Status
     [Arguments]    ${status}    ${reason}
     TEST STATUS    ${status}   ${reason}
 
-Setup for local test
-    START LOCAL
-    Open Session    ${LOCAL_CAPS}     ${WEBSITE_URL}
-
-Teardown for local test
-    Close Session
-    STOP LOCAL
+Get the page title
+    get title
 
 Click on Sign In
     click element    id=signin
@@ -56,3 +48,13 @@ Verify site content
     run keyword if    "${site_content}" == "Up and running"    mark test status    passed    Site Content validated!
     run keyword if    "${site_content}" != "Up and running"    mark test status    failed    Site Content validation failed!
     element should contain    css=body    Up and running
+
+Add first product to cart
+    click element    xpath=//*[@id="1"]/div[4]
+
+Verify product is added to cart
+    ${product_name}    get text    xpath=//*[@id="1"]/p
+    ${product_incart}    get text    css=p.title    
+    run keyword if    "${product_name}" == "${product_incart}"    mark test status    passed    Correct product added!
+    run keyword if    "${product_name}" != "${product_incart}"    mark test status    failed    Something went wrong!        
+    element should contain    css=p.title    ${product_name}

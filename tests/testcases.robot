@@ -3,23 +3,16 @@ Library    SeleniumLibrary
 Resource    ../config/KeywordsFile.robot
 
 *** Keywords ***
-Demouser
+Login
     Add Implicit Wait
+    Get the page title
     Click on Sign In
     Enter Credentials   demouser    testingisfun99
     Click on Login
     Verify username     demouser
 
-Favuser
+Add to Cart
     Add Implicit Wait
-    Click on Sign In
-    Enter Credentials   fav_user    testingisfun99
-    Click on Login
-    Verify username     fav_user
-
-Image not loading user
-    Add Implicit Wait
-    Click on Sign In
-    Enter Credentials   image_not_loading_user    testingisfun99
-    Click on Login
-    Verify username     image_not_loading_user
+    Get the page title
+    Add first product to cart
+    Verify product is added to cart

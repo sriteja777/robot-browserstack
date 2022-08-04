@@ -1,20 +1,25 @@
 *** Settings ***
 Library    SeleniumLibrary
+Library     Collections
+Library    ../../config/Config.py
 Resource   ../../config/KeywordsFile.robot
-Resource   ../../config/ParallelCaps.robot
 Resource    ../testcases.robot
-Test Setup    Open Session    ${PARALLEL_CAPS_1}     ${WEBSITE_URL}
+Test Setup    Execute test
 Test Teardown    Close Session
 
 *** Variables ***
-${WEBSITE_URL}=     https://bstackdemo.com
+${website_url}=    https://bstackdemo.com
+
+*** Keywords ***
+Execute test
+    ${final_caps}=    combine caps    0
+    Set to Dictionary    ${final_caps}    name=BStack Demo - ${TEST NAME}
+    Open Session    ${final_caps}    ${website_url}
+
 
 *** Test Cases ***
-Demouser test
-    Demouser
+Login Test
+    Login
 
-Favuser test
-    Favuser
-
-Image not loading user test
-    Image not loading user
+Add to Cart Test
+    Add to Cart
