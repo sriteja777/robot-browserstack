@@ -21,8 +21,7 @@ envs = [{
 },
 {
     "device" : "Samsung Galaxy S22",
-    "os_version" : "12",
-    "real_mobile" : "true"
+    "os_version" : "12"
 }]
 
 def combine_caps(i):
