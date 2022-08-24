@@ -13,8 +13,7 @@ ${local_url}=    http://bs-local.com:45691/check
 *** Keywords ***
 Setup for local test
     START LOCAL
-    ${final_caps}=    combine caps    0
-    Set to Dictionary    ${final_caps}    name=BStack Demo - ${TEST NAME}    browserstack.local=true
+    ${final_caps}=    combine caps    0    ${TEST NAME}
     Open Session    ${final_caps}    ${local_url}
 
 Teardown for local test

@@ -12,8 +12,7 @@ ${website_url}=    https://bstackdemo.com
 
 *** Keywords ***
 Execute test
-    ${final_caps}=    combine caps    0
-    Set to Dictionary    ${final_caps}    name=BStack Demo - ${TEST NAME}
+    ${final_caps}=    combine caps    0    ${TEST NAME}
     Open Session    ${final_caps}    ${website_url}
 
 

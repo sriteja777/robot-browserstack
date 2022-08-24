@@ -8,7 +8,8 @@ ${remote_url}=    https://hub.browserstack.com/wd/hub
 *** Keywords ***
 Open Session
     [Arguments]    ${capabilities}    ${test_url}
-    open browser    remote_url=${remote_url}     desired_capabilities=${capabilities}   url=${test_url}
+    Create Webdriver    Remote    options=${capabilities}    command_executor=${remote_url}
+    Go To    ${test_url}
 
 Close Session
     close browser

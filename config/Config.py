@@ -1,37 +1,47 @@
 import os
+from selenium import webdriver
+
+options = webdriver.ChromeOptions()
+
+browsers = ["Chrome", "Safari", "Chrome"]
 
 common_caps = {
-    "browserstack.user" : "BROWSERSTACK_USERNAME",
-    "browserstack.key" : "BROWSERSTACK_ACCESS_KEY",
-    "build" : "browserstack-build-1",
-    "browserstack.debug" : "true"
+    "userName" : "BROWSERSTACK_USERNAME",
+    "accessKey" : "BROWSERSTACK_ACCESS_KEY",
+    "buildName" : "browserstack-build-1",
+    "debug" : "true"
 }
 
 envs = [{
     "os" : "Windows",
-    "os_version" : "10",
-    "browser" : "Chrome",
-    "browser_version" : "latest"
+    "osVersion" : "10",
 },
 {
     "os" : "OS X",
-    "os_version" : "Big Sur",
-    "browser" : "Safari",
-    "browser_version" : "latest"
+    "osVersion" : "Big Sur",
 },
 {
-    "device" : "Samsung Galaxy S22",
-    "os_version" : "12"
+    "deviceName" : "Samsung Galaxy S22",
+    "osVersion" : "12"
 }]
 
-def combine_caps(i):
+def combine_caps(i, session_name):
 
     username = os.environ.get("BROWSERSTACK_USERNAME")
     accesskey = os.environ.get("BROWSERSTACK_ACCESS_KEY")
     if username != None and accesskey != None:
-        common_caps["browserstack.user"] = username
-        common_caps["browserstack.key"] = accesskey
+        common_caps["userName"] = username
+        common_caps["accessKey"] = accesskey
 
     x = int(i)
     envs[x].update(common_caps)
-    return envs[x]
+    envs[x].update({"sessionName" : "BStack Demo - " + session_name})
+
+    if session_name == "Local Test":
+        envs[x].update({"local" : "true"})
+    
+    options.set_capability("browserName", browsers[x])
+    options.set_capability("browserVersion", "latest")
+
+    options.set_capability("bstack:options", envs[x])
+    return options
