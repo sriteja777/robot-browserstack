@@ -3,14 +3,15 @@ from selenium import webdriver
 
 options = webdriver.ChromeOptions()
 
-browsers = ["Chrome", "Safari", "Chrome"]
-
 common_caps = {
     "userName" : "BROWSERSTACK_USERNAME",
     "accessKey" : "BROWSERSTACK_ACCESS_KEY",
     "buildName" : "browserstack-build-1",
     "debug" : "true"
 }
+
+browsers = ["Chrome", "Safari", "Chrome"]
+browser_versions = ["80", "latest", "latest"]
 
 envs = [{
     "os" : "Windows",
@@ -41,7 +42,7 @@ def combine_caps(i, session_name):
         envs[x].update({"local" : "true"})
     
     options.set_capability("browserName", browsers[x])
-    options.set_capability("browserVersion", "latest")
+    options.set_capability("browserVersion", browser_versions[x])
 
     options.set_capability("bstack:options", envs[x])
     return options
