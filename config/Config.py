@@ -10,20 +10,22 @@ common_caps = {
     "debug" : "true"
 }
 
-browsers = ["Chrome", "Safari", "Chrome"]
-browser_versions = ["80", "latest", "latest"]
-
 envs = [{
     "os" : "Windows",
     "osVersion" : "10",
+    "browserName" : "Chrome",
+    "browserVersion" : "latest"
 },
 {
     "os" : "OS X",
     "osVersion" : "Big Sur",
+    "browserName" : "Safari",
+    "browserVersion" : "latest"
 },
 {
     "deviceName" : "Samsung Galaxy S22",
-    "osVersion" : "12"
+    "osVersion" : "12",
+    "browserName" : "Chrome"
 }]
 
 def combine_caps(i, session_name):
@@ -40,9 +42,11 @@ def combine_caps(i, session_name):
 
     if session_name == "Local Test":
         envs[x].update({"local" : "true"})
-    
-    options.set_capability("browserName", browsers[x])
-    options.set_capability("browserVersion", browser_versions[x])
+
+    if 'browserName' in envs[x]:
+        options.set_capability("browserName", envs[x]['browserName'])
+    if 'browserVersion' in envs[x]:
+        options.set_capability("browserVersion", envs[x]['browserVersion'])
 
     options.set_capability("bstack:options", envs[x])
     return options
