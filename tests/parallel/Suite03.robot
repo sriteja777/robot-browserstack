@@ -1,6 +1,5 @@
 *** Settings ***
 Library    SeleniumLibrary
-Library     Collections
 Library    ../../config/Config.py
 Resource   ../../config/KeywordsFile.robot
 Resource    ../testcases.robot
@@ -12,14 +11,10 @@ ${website_url}=    https://bstackdemo.com
 
 *** Keywords ***
 Execute test
-    ${final_caps}=    combine caps    2
-    Set to Dictionary    ${final_caps}    name=BStack Demo - ${TEST NAME}
-    Open Session    ${final_caps}    ${website_url}
+    ${test_caps}=   get test caps   2
+    Open Session    ${test_caps}    ${website_url}
 
 
 *** Test Cases ***
-Login Test
-    Login
-
 Add to Cart Test
     Add to Cart
