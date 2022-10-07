@@ -2,45 +2,50 @@
 
 ![BrowserStack Logo](https://d98b8t1nnulk5.cloudfront.net/production/images/layout/logo-header.png?1469004780) 
 
+## Prerequisite
+```
+python3 should be installed
+```
+
 ## Setup
-* Clone the repo
-* Install dependencies `pip install -r requirements.txt`  
+* Clone the repo 
+  ```
+  git clone -b sdk https://github.com/browserstack/robot-browserstack.git
+  ```
+* Install dependencies 
+  ```
+  pip install -r requirements.txt
+  ```  
 
-## Set BrowserStack Credentials 
-* Export the BrowserStack username and access key as environment variables
+## Set BrowserStack Credentials
+* Add your BrowserStack username and access key in the `browserstack.yml` config fle.
+* You can also export them as environment variables, `BROWSERSTACK_USERNAME` and `BROWSERSTACK_ACCESS_KEY`:
 
-#### For Linux/MacOS
-  ```
-  export BROWSERSTACK_USERNAME=<browserstack-username>
-  export BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
-  ```
-#### For Windows
-  ```
-  setx BROWSERSTACK_USERNAME=<browserstack-username>
-  setx BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
-  ```
+  #### For Linux/MacOS
+    ```
+    export BROWSERSTACK_USERNAME=<browserstack-username>
+    export BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
+    ```
+  #### For Windows
+    ```
+    setx BROWSERSTACK_USERNAME=<browserstack-username>
+    setx BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
+    ```
 
 ## Running tests
 
-* To run local test, run `robot tests/LocalTest.robot`
-* To run parallel tests we will be using the [Pabot](https://pabot.org/) library: 
-  1. To run test suites in parallel (Testcases within respective test suites will be sequential)
-     * Run - `pabot --processes <count_of_parallels> tests/parallel/*.robot`
-     * Alternate method: `pabot --processes <count_of_parallels> <name_of_suites_to_run>`
-         <br/>Eg: `pabot --processes 2 tests/parallel/Suite01.robot tests/parallel/Suite02.robot`
-  2. To run all test cases within a test suite in parallel
-     * Run - `pabot --testlevelsplit <test_suite_file_name>` 
-     <br/>Eg:  `pabot --testlevelsplit tests/parallel/Suite01.robot`
-  3. Run all testcases across all Test Suites in parallel
-     * Run - `pabot --testlevelsplit --processes <count_of_parallels> tests/parallel/*.robot`
-     <br/>**Note: If the process count exceeds the parallel threads available on BrowserStack, the sessions will automatically get queued.**
+* To run sample tests:
+  - To run the sample tests in parallel across the platforms defined in the `browserstack.yml` file, run:
+    ```
+    browserstack-sdk pabot ./tests/parallel/*.robot
+    ```
+* To run tests on locally hosted websites:
+  - To run the local test in parallel across the platforms defined in the `browserstack.yml` file, run:
+    ```
+    browserstack-sdk pabot ./tests/LocalTest.robot
+    ```
 
 Understand how many parallel sessions you need by using our [Parallel Test Calculator](https://www.browserstack.com/automate/parallel-calculator?ref=github)
-
-## Notes
-* This repository only works for Selenium 3 as of now. Desired Capabilities do not get honoured for Selenium 4. The open issue on SeleniumLibrary can be found [here](https://github.com/robotframework/SeleniumLibrary/issues/1774).
-* You can view your test results on the [BrowserStack Automate dashboard](https://www.browserstack.com/automate)
-* To test on a different set of browsers, check out our [platform configurator](https://www.browserstack.com/automate/capabilities)
 
 ## Additional Resources
 * [Documentation for writing Automate test scripts in Python](https://www.browserstack.com/automate/python)
