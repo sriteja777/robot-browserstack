@@ -1,25 +1,17 @@
 *** Settings ***
-Library    SeleniumLibrary
-Library     Collections
-Library    ../config/manage-local-testing.py
+Library         SeleniumLibrary
 Library    ../config/Config.py
-Resource    ../config/KeywordsFile.robot
-Test Setup    Setup for local test
-Test Teardown    Teardown for local test
+Resource        ../config/KeywordsFile.robot
+Test Setup      Execute local test
+Test Teardown   Close Session
 
 *** Variables ***
-${local_url}=    http://bs-local.com:45691/check
+${local_website_url}=   http://bs-local.com:45691/check
 
 *** Keywords ***
-Setup for local test
-    START LOCAL
-    ${final_caps}=    combine caps    0
-    Set to Dictionary    ${final_caps}    name=BStack Demo - ${TEST NAME}    browserstack.local=true
-    Open Session    ${final_caps}    ${local_url}
-
-Teardown for local test
-    Close Session
-    STOP LOCAL
+Execute local test
+    ${test_caps}=   get test caps   0
+    Open Session    ${test_caps}    ${local_website_url}
 
 *** Test Cases ***
 Local Test
