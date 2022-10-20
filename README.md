@@ -28,6 +28,9 @@ python3 should be installed
     ```
   #### For Windows
     ```
+    set BROWSERSTACK_USERNAME=<browserstack-username>
+    set BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
+    
     setx BROWSERSTACK_USERNAME=<browserstack-username>
     setx BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
     ```
