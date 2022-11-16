@@ -6,7 +6,7 @@ Test Setup      Execute local test
 Test Teardown   Close Session
 
 *** Variables ***
-${local_website_url}=   http://bs-local.com:45691/check
+${local_website_url}=   http://bs-local.com:45454
 
 *** Keywords ***
 Execute local test
@@ -16,4 +16,4 @@ Execute local test
 *** Test Cases ***
 Local Test
     Add Implicit Wait
-    Verify site content
+    Verify Local Page
