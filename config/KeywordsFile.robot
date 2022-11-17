@@ -18,9 +18,8 @@ Add Implicit Wait
 Get the page title
     get title
 
-Verify site content
-    ${site_content}=   get text    css=body
-    element should contain    css=body    Up and running
+Verify Local Page
+    Title Should be     BrowserStack Local
 
 Add first product to cart
     click element    xpath=//*[@id="1"]/div[4]
