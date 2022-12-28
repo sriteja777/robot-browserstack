@@ -12,6 +12,12 @@ python3 should be installed
   ```
   git clone -b sdk https://github.com/browserstack/robot-browserstack.git
   ```
+* It is recommended to use a virtual environment to install dependencies. To create a virtual environment:
+  ```
+  python3 -m venv env
+  source env/bin/activate # on Mac
+  env\Scripts\activate # on Windows
+  ```
 * Install dependencies 
   ```
   pip install -r requirements.txt
@@ -40,12 +46,12 @@ python3 should be installed
 * To run sample tests:
   - To run the sample tests in parallel across the platforms defined in the `browserstack.yml` file, run:
     ```
-    browserstack-sdk pabot ./tests/parallel/*.robot
+    browserstack-sdk robot ./tests/test-*.robot
     ```
 * To run tests on locally hosted websites:
   - To run the local test in parallel across the platforms defined in the `browserstack.yml` file, run:
     ```
-    browserstack-sdk pabot ./tests/LocalTest.robot
+    browserstack-sdk robot ./tests/local-test.robot
     ```
 
 Understand how many parallel sessions you need by using our [Parallel Test Calculator](https://www.browserstack.com/automate/parallel-calculator?ref=github)
