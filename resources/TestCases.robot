@@ -1,6 +1,6 @@
 *** Settings ***
 Library    SeleniumLibrary
-Resource    ../config/KeywordsFile.robot
+Resource    ./KeywordsFile.robot
 
 *** Keywords ***
 Add to Cart

@@ -7,3 +7,5 @@ pabot_results/
 .pabotsuitenames
 .DS_Store
 *.png
+env
+browserstack.err
