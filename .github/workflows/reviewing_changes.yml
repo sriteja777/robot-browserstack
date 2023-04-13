@@ -60,10 +60,10 @@ jobs:
         run: python -m pip install -r requirements.txt
 
       - name: run tests in parallel
-        run: browserstack-sdk robot ./tests/parallel/*.robot
+        run: browserstack-sdk robot ./tests/test-*.robot
 
       - name: run local tests in parallel
-        run: browserstack-sdk robot ./tests/LocalTest.robot
+        run: browserstack-sdk robot ./tests/local-test.robot
 
       - if: always()
         uses: actions/github-script@98814c53be79b1d30f795b907e553d8679345975
