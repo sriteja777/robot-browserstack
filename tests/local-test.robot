@@ -16,6 +16,6 @@ Execute local test
 
 
 *** Test Cases ***
-Local Test
+BStack Local Test
     Add Implicit Wait
     Verify Local Page

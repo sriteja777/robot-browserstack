@@ -17,5 +17,5 @@ Execute test
 
 
 *** Test Cases ***
-Add to Cart Test 3
+BStack Sample Test 3
     Add to Cart
