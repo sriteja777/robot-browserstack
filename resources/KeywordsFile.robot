@@ -7,7 +7,7 @@ ${remote_url}=    http://localhost:4444/wd/hub
 *** Keywords ***
 Open Session
     [Arguments]    ${capabilities}    ${test_url}
-    open browser    remote_url=${remote_url}     desired_capabilities=${capabilities}   url=${test_url}
+    open browser    remote_url=${remote_url}    browser=chrome    desired_capabilities=${capabilities}   url=${test_url}
 
 Close Session
     close browser
